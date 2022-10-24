@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.semantic-release.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+      - name: Install dependencies
+        run: |
+          npm install @semantic-release/commit-analyzer \
+                      @semantic-release/release-notes-generator \
+                      @semantic-release/github \
+                      @semantic-release/exec \
+                      conventional-changelog-eslint \
+                      semantic-release
+      - name: Create release
+        id: semantic-release
+        run: |
+          npx semantic-release -e ./.github/.releaserc.json
+          echo "version=$(cat version.txt)" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
