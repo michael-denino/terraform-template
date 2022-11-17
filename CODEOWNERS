@@ -1,0 +1,6 @@
+# CODEOWNERS documentation:
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# These owners are the default owners for everything in
+# the repo, unless a later match takes precedence.
+*       
