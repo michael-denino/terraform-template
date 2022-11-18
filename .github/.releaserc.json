@@ -10,4 +10,4 @@
         "publishCmd": "echo ${nextRelease.version} > version.txt"
       }]
     ]
-  }
+}
