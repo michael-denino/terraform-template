@@ -21,7 +21,6 @@ jobs:
           npm install @semantic-release/commit-analyzer \
                       @semantic-release/release-notes-generator \
                       @semantic-release/github \
-                      @semantic-release/exec \
                       conventional-changelog-eslint \
                       semantic-release
       - name: Create Release
