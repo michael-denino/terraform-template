@@ -1,0 +1,34 @@
+name: pre-commit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  pre-commit:
+    name: pre-commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install TFLint
+        id: install-tflint
+        uses: terraform-linters/setup-tflint@v3
+        with:
+          tflint_version: v0.44.1
+      - name: Install terraform-docs
+        id: install-terraform-docs
+        run: |
+          curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/v0.16.0/terraform-docs-v0.16.0-$(uname)-amd64.tar.gz
+          tar -xzf terraform-docs.tar.gz
+          chmod +x terraform-docs
+          sudo mv terraform-docs /usr/local/bin/terraform-docs
+          terraform-docs --version
+      - name: Checkout Repository
+        id: checkout-repository
+        uses: actions/checkout@v3
+      - name: Run pre-commit
+        id: run-pre-commit
+        uses: pre-commit/action@v3.0.0
