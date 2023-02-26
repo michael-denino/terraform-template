@@ -13,11 +13,11 @@ jobs:
     name: pre-commit
     runs-on: ubuntu-latest
     steps:
-      - name: Install tflint
+      - name: Install TFLint
         id: install-tflint
-        run: |
-          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-          tflint --version
+        uses: terraform-linters/setup-tflint@v3
+        with:
+          tflint_version: v0.44.1
       - name: Install terraform-docs
         id: install-terraform-docs
         run: |
