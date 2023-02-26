@@ -16,7 +16,7 @@ Repository template for Terraform projects.
 This repository template provides a starting point for common Terraform projects. It includes placeholder `.tf` files, .gitignore, pre-commit configuration, a semantic-release workflow, linting, and automated documentation generation. This README provides basic guidance for using the tools included in this template. References to Terraform documentation and best practices are also included.
 
 ## Pre-Commit
-Pre-Commit uses a Git hook to run test scripts prior to making a commit. The `.pre-commit-config.yaml` file included in this repository is configured for Terraform projects. The pre-commit configuration file refrences scripts located in external repositories. Modify the configuration as needed. Refer to the [pre-commit](https://pre-commit.com/) documentation for more information.
+Pre-Commit uses the pre-commit Git hook to run tests prior to making a commit. The `.pre-commit-config.yaml` file included in this repository is configured for Terraform projects. The pre-commit configuration file references scripts located in external repositories. Modify the configuration as needed. Refer to the [pre-commit](https://pre-commit.com/) documentation for more information.
 
 ### Prerequisites
 The following packages are required to use the pre-commit configuration specified in `.pre-commit-config.yaml`.
@@ -33,7 +33,7 @@ Install the prerequisites listed in the [Prerequisites](#prerequisites) section.
 ```zsh
 pre-commit install
 ```
-Pre-Commit will add a Git hook to `.git/hooks/pre-commit`. The Git hook will now trigger pre-commit when making commits to the repository. To manually trigger pre-commit, use:
+Pre-Commit will add a Git hook to `.git/hooks/pre-commit`. The Git hook will trigger pre-commit when making commits to the repository. To manually trigger pre-commit, run:
 ```zsh
 pre-commit run --all
 ```
@@ -42,13 +42,25 @@ To manually trigger individual tests, reference the hook id from `.pre-commit-co
 pre-commit run <hook_id>
 ```
 By default, failing pre-commit tests will prevent a commit from being made. It can be useful to run pre-commit before attempting to make a commit as some pre-commit tests will automatically take remediating action. If a test that takes remediating action fails, the test should succeed on the next run if the remediating action was successful.
+```zsh
+$ pre-commit run trailing-whitespace
+trim trailing whitespace.................................................Failed
+- hook id: trailing-whitespace
+- exit code: 1
+- files were modified by this hook
 
+Fixing README.md
+```
+```zsh
+$ pre-commit run trailing-whitespace
+trim trailing whitespace.................................................Passed
+```
 External repositories defined in `.pre-commit-config.yaml` are version pinned. To update versions in `.pre-commit-config.ymal`, run:
 ```zsh
 pre-commit autoupdate
 ```
 
-The `.github/workflows/pre-commit.yaml` workflow runs pre-commit in GitHub Actions when a pull request is created or updated. Running pre-commit in a GtiHub Actions workflow ensures that pre-commit runs even when it is not installed on a workstation. Add the pre-commit workflow as a required [status check](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks) in a GitHub [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule) to ensure pre-commit tests pass before before a pull reuest is merged.
+The `.github/workflows/pre-commit.yaml` workflow runs pre-commit in GitHub Actions when a pull request is created or updated. Running pre-commit in a GtiHub Actions workflow ensures that pre-commit runs even when it is not installed on a workstation. Add the pre-commit workflow as a required [status check](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks) in a GitHub [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule) to ensure pre-commit tests pass before a pull request is merged.
 
 ### Terraform-Docs
 Add the markers described in the [terraform_docs](https://github.com/antonbabenko/pre-commit-terraform#terraform_docs) section of the [pre-commit-terraform](https://github.com/antonbabenko/pre-commit-terraform#table-of-content) script documentation to `README.md`. Terraform-Docs will automatically generate Terraform documentation inside the markers. Markers can also be added to `README.md` files in subdirectories if local modules are used.
@@ -56,7 +68,7 @@ Add the markers described in the [terraform_docs](https://github.com/antonbabenk
 The markers used by the pre-commit script differ from the default markers used by [terraform-docs](https://github.com/terraform-docs/terraform-docs/#readme).
 
 ### TFLint
-TFLint is a framework that provides linting functionality for Terraform providers (such as AWS).
+TFLint is a framework for linting Terraform providers.
 `.tflint.hcl` contains the default configuration for running `tflint` against the AWS Terraform provider. Refer to the [TFLint](https://github.com/terraform-linters/tflint#readme) documentation for more information.
 
 ## Semantic-Release
