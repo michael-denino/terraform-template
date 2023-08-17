@@ -9,6 +9,7 @@ Repository template for Terraform projects.
   - [Terraform-Docs](#terraform-docs)
   - [TFLint](#tflint)
 - [Semantic-Release](#semantic-release)
+- [Dependabot](#dependabot)
 - [Reusable Modules](#reusable-modules)
 - [Additional Resources](#additional-resources)
 
@@ -77,6 +78,9 @@ The `.github/workflows/relase.yaml` workflow uses semantic-release to create [se
 Semantic-Release uses the [Angular Commit Message Format](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#-commit-message-format) to create and format releases. Refer to the [semantic-release](https://github.com/semantic-release/semantic-release#readme) documentation for more information.
 
 Semantic versioned releasees may not be necessary for Terraform root modules but should be used when creating reusable Terraform modules.
+
+## Dependabot
+A Dependabot configuration file is located at `./github/dependabot.yaml`. Dependabot is GitHub's automated dependency management tool that monitors dependencies for updates, security vulnerabilities, and compatibility issues. Dependabot automatically creates pull requests to update the dependencies specified in `dependabot.yaml`. Refer to the [Dependabot QuickStart Guide](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide) for more information.
 
 ## Reusable Modules
 Remove `provider.tf` and `backend.tf` when using this repository template to create a reusable Terraform module. Providers and remote backends should only be defined in root modules. To test a reusable module, create a `test` directory in the root of this repository and call the module from the test directory. Reference the module using a relative path. Alternatively, the module can be referenced and tested from outside this repository.
