@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Install TFLint
         id: install-tflint
-        uses: terraform-linters/setup-tflint@v3
+        uses: terraform-linters/setup-tflint@v4
         with:
           tflint_version: v0.44.1
       - name: Install terraform-docs
