@@ -84,10 +84,10 @@ Semantic versioned releasees may not be necessary for Terraform root modules but
 A Dependabot configuration file is located at `./github/dependabot.yaml`. Dependabot is GitHub's automated dependency management tool that monitors dependencies for updates, security vulnerabilities, and compatibility issues. Dependabot automatically creates pull requests to update the dependencies specified in `dependabot.yaml`. Refer to the [Dependabot QuickStart Guide](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide) for more information.
 
 ## Environments
-Add files to the `./envs` directory to manage multiple environments. For example, to add a production backend configuration and production environment variables create `./envs/prod/backend-config.prod.tfvars` and `./vars/prod/prod.tfvars`. The `Makefile` should be used for local development only. Use native CI/CD tooling to reference files in `./envs` when running CI/CD workflows. Do not include sensitive information in variable files.
+Add files to the `./envs` directory to manage multiple environments. For example, to add a production backend configuration and production environment variables create `./envs/prod/backend-config.prod.tfvars` and `./envs/prod/prod.tfvars`. The `Makefile` should be used for local development only. Use native CI/CD tooling to reference files in `./envs` when running CI/CD workflows. Do not include sensitive information in variable files.
 
 ## Reusable Modules
-Remove `provider.tf` and `backend.tf` when using this repository template to create a reusable Terraform module. Providers and remote backends should only be defined in root modules. To test a reusable module, create a `./test` directory in the root of this repository and call the module from the test directory. Move the `Makefile` and `./vars` direcotry into the `test` directory. Reference the module using a relative path. Alternatively, the module can be referenced and tested from outside this repository.
+Remove `provider.tf` and `backend.tf` when using this repository template to create a reusable Terraform module. Providers and remote backends should only be defined in root modules. To test a reusable module, create a `./test` directory in the root of this repository and call the module from the test directory. Move the `Makefile` and `./envs` direcotry into the `test` directory. Reference the module using a relative path. Alternatively, the module can be referenced and tested from outside this repository.
 ```zsh
 rm provider.tf backend.tf
 mkdir test
