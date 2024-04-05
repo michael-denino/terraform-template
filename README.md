@@ -118,6 +118,7 @@ module "example" {
 
 ## Additional Resources
 - [AWS Best Practices for Terraform](https://aws-ia.github.io/standards-terraform/)
+- [Module Creation - Recommended Pattern](https://developer.hashicorp.com/terraform/tutorials/modules/pattern-module-creation)
 - [Google Best Practices for Terraform](https://cloud.google.com/docs/terraform/best-practices-for-terraform)
 - [Provider Plugin Cache](https://developer.hashicorp.com/terraform/cli/config/config-file#provider-plugin-cache)
 - [Sharing Data Between Configurations](https://developer.hashicorp.com/terraform/language/state/remote-state-data#alternative-ways-to-share-data-between-configurations)
