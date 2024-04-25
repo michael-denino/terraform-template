@@ -23,11 +23,13 @@ Pre-Commit uses the pre-commit Git hook to run tests prior to making a commit. T
 ### Prerequisites
 The following packages are required to use the pre-commit configuration specified in `.pre-commit-config.yaml`.
 ```zsh
+brew tap hashicorp/tap
 brew install \
-pre-commit \
-terraform \
-terraform-docs \
-tflint
+  hashicorp/tap/terraform \
+  pre-commit \
+  terraform \
+  terraform-docs \
+  tflint
 ```
 
 ### Usage
