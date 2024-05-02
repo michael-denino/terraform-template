@@ -27,3 +27,8 @@ repos:
     rev: 0.21.0
     hooks:
       - id: check-github-workflows
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.16.1
+    hooks:
+      - id: gitleaks

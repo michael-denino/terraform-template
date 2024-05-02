@@ -8,6 +8,7 @@ Repository template for Terraform projects.
   - [Usage](#usage)
   - [Terraform-Docs](#terraform-docs)
   - [TFLint](#tflint)
+  - [Gitleaks](#gitleaks)
 - [Semantic-Release](#semantic-release)
 - [Dependabot](#dependabot)
 - [Environments](#environments)
@@ -74,6 +75,18 @@ The markers used by the pre-commit script differ from the default markers used b
 ### TFLint
 TFLint is a framework for linting Terraform providers.
 `.tflint.hcl` contains the default configuration for running `tflint` against the AWS Terraform provider. Refer to the [TFLint](https://github.com/terraform-linters/tflint#readme) documentation for more information.
+
+### Gitleaks
+Gitleaks is a source code analysis tool (SAST) that can detect hardcoded secrets like passwords, API keys, and tokens in Git repositories. Gitleaks provides a [default configuration](https://github.com/gitleaks/gitleaks/blob/master/config/gitleaks.toml) and supports [custom configurations](https://blog.gitleaks.io/stop-leaking-secrets-configuration-2-3-aeed293b1fbf) for secrets detection. The Gitleaks pre-commit hook in this repository uses the default configuration. Create a `.gitleaks.toml` file in the root of this repository to use a custom Gitleaks configuration or specify the path of the configuration file by passing the ` --config` flag as an argument in the Gitleaks pre-commit configuration.
+
+```yaml
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: <VERSION>
+    hooks:
+      - id: gitleaks
+        args:
+          - --config=<PATH_TO_CONFIG_FILE>
+```
 
 ## Semantic-Release
 The `.github/workflows/relase.yaml` workflow uses semantic-release to create [semantic versioning](https://semver.org/) GitHub releases. The semantic-release workflow is configured to trigger on push (merge) to the `main` branch.
