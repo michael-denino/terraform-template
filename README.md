@@ -102,22 +102,20 @@ A Dependabot configuration file is located at `./github/dependabot.yaml`. Depend
 Modify files in the `./envs` directory to manage multiple environments. For example, to add a production backend configuration and production environment variables modify `./envs/prod/backend-config.prod.tfvars` and `./envs/prod/prod.tfvars`. The `Makefile` should be used for local development only. Use native CI/CD tooling to reference files in `./envs` when running CI/CD workflows. Do not include sensitive information in variable files.
 
 ## Reusable Modules
-Remove `provider.tf` and `backend.tf` when using this repository template to create a reusable Terraform module. Providers and remote backends should only be defined in root modules. To test a reusable module, create a `./test` directory in the root of this repository and call the module from the test directory. Move the `Makefile` and `./envs` directory into the `test` directory. Reference the module using a relative path. Alternatively, the module can be referenced and tested from outside this repository.
+Remove `provider.tf`, `backend.tf`, `Makefile`, and `./envs` when using this repository template to create a reusable Terraform module. Providers and remote backends should only be defined in root modules. Create an `./examples` directory in the root of this repository. Create subdirectories for example module calls in the `./examples` directory. Call the module using a relative path. Alternatively, the module can be referenced and tested from another repository.
 ```zsh
-rm provider.tf backend.tf
-mkdir test
-mv Makefile ./test/Makefile
-mv ./envs ./test/envs
-touch ./test/main.tf
+rm provider.tf backend.tf Makefile
+rm -rI ./envs
+mkdir ./examples
 ```
-The following is an example test configuration. Add a remote backend definition if needed.
+The following is an example module call configuration. This configuration should exist in a subdirectory within the `./examples` directory (such as `./examples/basic`). Add input parameters and a remote backend definition if needed.
 ```hcl
 terraform {
   required_version = ">= 1.0.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "4.56.0"
+      version = "5.49.0"
     }
   }
 }
@@ -127,7 +125,7 @@ provider "aws" {
 }
 
 module "example" {
-  source = "../"
+  source = "../../"
 }
 ```
 
