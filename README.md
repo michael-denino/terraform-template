@@ -135,3 +135,4 @@ module "example" {
 - [Google Best Practices for Terraform](https://cloud.google.com/docs/terraform/best-practices-for-terraform)
 - [Provider Plugin Cache](https://developer.hashicorp.com/terraform/cli/config/config-file#provider-plugin-cache)
 - [Sharing Data Between Configurations](https://developer.hashicorp.com/terraform/language/state/remote-state-data#alternative-ways-to-share-data-between-configurations)
+- [Version Constraint Syntax and Best Practices](https://developer.hashicorp.com/terraform/language/expressions/version-constraints)
