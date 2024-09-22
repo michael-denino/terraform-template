@@ -70,8 +70,6 @@ The `.github/workflows/pre-commit.yaml` workflow runs pre-commit in GitHub Actio
 ### Terraform-Docs
 Add the markers described in the [terraform_docs](https://github.com/antonbabenko/pre-commit-terraform#terraform_docs) section of the [pre-commit-terraform](https://github.com/antonbabenko/pre-commit-terraform#table-of-content) script documentation to `README.md`. Terraform-Docs will automatically generate Terraform documentation inside the markers. Markers can also be added to `README.md` files in subdirectories if local modules are used.
 
-The markers used by the pre-commit script differ from the default markers used by [terraform-docs](https://github.com/terraform-docs/terraform-docs/#readme).
-
 ### TFLint
 TFLint is a framework for linting Terraform providers.
 `.tflint.hcl` contains the default configuration for running `tflint` against the AWS Terraform provider. Refer to the [TFLint](https://github.com/terraform-linters/tflint#readme) documentation for more information.
