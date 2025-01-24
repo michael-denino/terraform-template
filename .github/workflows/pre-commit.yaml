@@ -11,13 +11,18 @@ on:
 jobs:
   pre-commit:
     name: pre-commit
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
+      - name: Install Terraform
+        id: install-terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+            terraform_version: 1.10.5
       - name: Install TFLint
         id: install-tflint
         uses: terraform-linters/setup-tflint@v4
         with:
-          tflint_version: v0.53.0
+          tflint_version: v0.55.0
       - name: Install terraform-docs
         id: install-terraform-docs
         run: |
